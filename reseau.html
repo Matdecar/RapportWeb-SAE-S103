@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <title>Réseau | SAÉ S1.03</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="#">Binôme 05</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
+                <li class="nav-item"><a class="nav-link" href="system.html">Infrastructure</a></li>
+                <li class="nav-item"><a class="nav-link" href="administration.html">Administration</a></li>
+                <li class="nav-item"><a class="nav-link active" href="reseau.html">Réseau</a></li>
+                <li class="nav-item"><a class="nav-link" href="journal.html">Journal</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container my-5">
+    <h2>I. Service Web (Apache)</h2>
+    <div class="row mb-5">
+        <div class="col-md-6">
+            <p>
+                Le serveur HTTP Apache est la pierre angulaire de notre infrastructure. Nous l'avons installé via le gestionnaire de paquets officiel d'Arch Linux en utilisant la commande <code>sudo pacman -S apache</code>. Cette étape déploie les binaires et les fichiers de configuration par défaut.
+            </p>
+            <figure><img src="assets/img/Apache_install.png" class="img-fluid" alt="Install"><figcaption>Installation du paquet httpd</figcaption></figure>
+        </div>
+        <div class="col-md-6">
+            <p>
+                Une fois installé, le service ne démarre pas automatiquement. Nous avons utilisé <code>systemctl enable --now httpd</code> pour non seulement démarrer le serveur immédiatement, mais aussi garantir qu'il se relance automatiquement à chaque redémarrage de la VM.
+            </p>
+            <figure><img src="assets/img/Apache_start.png" class="img-fluid" alt="Start"><figcaption>Activation du service (Systemd)</figcaption></figure>
+        </div>
+    </div>
+
+    <h2>II. Stratégie de Mise en Ligne</h2>
+
+    <div class="card mb-4">
+        <div class="card-header">Phase 1 : Test en NAT (Port Forwarding)</div>
+        <div class="card-body">
+            <p>
+                Avant d'exposer le serveur sur le réseau public, nous avons validé son fonctionnement en local. Nous avons mappé le port <strong>8080</strong> de l'hôte (Asus G14) vers le port <strong>80</strong> de la VM. Cela permet d'accéder au site via <code>http://127.0.0.1:8080</code> sans modifier la configuration réseau de l'établissement.
+            </p>
+            <div class="row">
+                <div class="col-md-6">
+                    <figure><img src="assets/img/Network_setup.png" class="img-fluid" alt="NAT"><figcaption>Règle NAT : 8080 -> 80</figcaption></figure>
+                </div>
+                <div class="col-md-6">
+                    <figure><img src="assets/img/Network_proof.png" class="img-fluid" alt="Localhost"><figcaption>Validation : Accès Localhost réussi</figcaption></figure>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header text-success">Phase 2 : Production (Mode Bridged)</div>
+        <div class="card-body">
+            <p>
+                Pour répondre à l'exigence de rendre le site "accessible par toute personne sur le même réseau", nous avons basculé l'interface réseau en mode <strong>Accès par Pont (Bridged Adapter)</strong> sur la carte Wi-Fi. La VM obtient ainsi sa propre adresse IP sur le réseau local, la rendant visible comme une machine physique distincte.
+            </p>
+            <div class="row">
+                <div class="col-md-5">
+                    <figure><img src="assets/img/Network_switch.png" class="img-fluid" alt="Bridged"><figcaption>Configuration finale VirtualBox</figcaption></figure>
+                </div>
+                <div class="col-md-7">
+                    <figure><img src="assets/img/Network_proof.png" class="img-fluid" alt="Proof"><figcaption>Preuve de service (Index of /)</figcaption></figure>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2>III. Workflow de Développement</h2>
+    <div class="row">
+        <div class="col-12">
+            <p class="text-center">
+                Pour optimiser le flux de travail, nous avons monté un dossier partagé. Cela permet de développer le code HTML/CSS sur l'hôte avec l'IDE <strong>PhpStorm</strong> (profitant des performances du Ryzen 9) tout en servant les fichiers instantanément depuis le répertoire <code>/srv/http/</code> de la VM.
+            </p>
+            <figure class="text-center">
+                <img src="assets/img/Folder-proof.png" class="img-fluid w-50" alt="Shared">
+                <figcaption>Montage du dossier projet (PhpStorm)</figcaption>
+            </figure>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

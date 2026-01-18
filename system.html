@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <title>Système | SAÉ S1.03</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="#">Binôme 05</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
+                <li class="nav-item"><a class="nav-link active" href="system.html">Infrastructure</a></li>
+                <li class="nav-item"><a class="nav-link" href="administration.html">Administration</a></li>
+                <li class="nav-item"><a class="nav-link" href="reseau.html">Réseau</a></li>
+                <li class="nav-item"><a class="nav-link" href="journal.html">Journal</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container my-5">
+    <h2>I. Préparation de l'Hôte</h2>
+    <div class="row align-items-center mb-5">
+        <div class="col-md-6">
+            <p>
+                Avant de virtualiser, nous avons préparé l'hôte Asus G14. L'installation des paquets <code>virtualbox</code> et <code>virtualbox-host-modules-arch</code> via <code>pacman</code> est cruciale pour assurer la communication directe entre l'hyperviseur et le noyau Linux-g14 spécifique à la machine.
+            </p>
+            <p>
+                <strong>Gestion des droits :</strong> L'ajout de l'utilisateur au groupe <code>vboxusers</code> est une étape de sécurisation qui permet de piloter les interfaces réseaux (pour le mode Pont) et les périphériques USB sans élever les privilèges en permanence via sudo.
+            </p>
+            <div class="alert alert-info">
+                <code>sudo usermod -aG vboxusers $USER</code>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <figure>
+                <img src="assets/img/Commande_inst.png" class="img-fluid" alt="Pacman">
+                <figcaption>Installation des dépendances via terminal</figcaption>
+            </figure>
+        </div>
+    </div>
+
+    <h2>II. Architecture et Dimensionnement</h2>
+    <div class="row g-4 mb-5">
+        <div class="col-md-6">
+            <div class="card h-100">
+                <div class="card-header">Ressources "Confort"</div>
+                <div class="card-body">
+                    <p>Grâce aux 32 Go de RAM de l'hôte, nous avons configuré une machine virtuelle robuste :</p>
+                    <ul>
+                        <li><strong>8 Go de RAM :</strong> Garantit une fluidité parfaite de l'interface Plasma.</li>
+                        <li><strong>4 vCPUs :</strong> Assure le traitement parallèle des requêtes Apache.</li>
+                    </ul>
+                    <figure>
+                        <img src="assets/img/Allocations.png" class="img-fluid" alt="Config">
+                        <figcaption>8 Go RAM / 4 CPUs</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card h-100">
+                <div class="card-header">Le choix de l'EFI</div>
+                <div class="card-body">
+                    <p>
+                        L'activation de l'option <strong>"Use EFI"</strong> est techniquement indispensable pour les distributions Arch modernes (EndeavourOS).
+                        Sans cela, le chargeur d'amorçage ne peut pas gérer correctement la table de partition GPT du disque virtuel de 50 Go.
+                    </p>
+                    <figure>
+                        <img src="assets/img/Sum_ressources.png" class="img-fluid" alt="Summary">
+                        <figcaption>Option EFI cochée (Obligatoire)</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2>III. Installation du Système</h2>
+    <p>Nous avons déployé l'ISO <strong>EndeavourOS Ganymede</strong> sur un disque virtuel dynamique de 50 Go formatté en <code>ext4</code>.</p>
+    <div class="row g-3">
+        <div class="col-md-4">
+            <figure>
+                <img src="assets/img/Admin_creation.png" class="img-fluid" alt="User">
+                <figcaption><strong>Nomenclature :</strong> Respect strict du nom <code>admin_gr108_binome05</code> imposé par le sujet.</figcaption>
+            </figure>
+        </div>
+        <div class="col-md-4">
+            <figure>
+                <img src="assets/img/Endea_install.png" class="img-fluid" alt="Install">
+                <figcaption><strong>Déploiement :</strong> Copie des fichiers systèmes via l'installateur intégré.</figcaption>
+            </figure>
+        </div>
+        <div class="col-md-4">
+            <figure>
+                <img src="assets/img/Grub.png" class="img-fluid" alt="Grub">
+                <figcaption><strong>Succès :</strong> Boot correct sur le menu GRUB (Preuve de la config EFI).</figcaption>
+            </figure>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

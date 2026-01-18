@@ -1,0 +1,149 @@
+/* --- VARIABLES (Couleurs Asus/Endeavour) --- */
+:root {
+    --sombre: #0f111a;
+    --violet: #8b5cf6;
+    --violet_clair: #ac14fe;
+    --gris: #2d3748;
+}
+
+body {
+    background-color: var(--sombre);
+    color: #e2e8f0;
+    font-family: sans-serif;
+    padding-bottom: 100px;
+}
+
+/* On modifie directement la Navbar de Bootstrap */
+.navbar {
+    background-color: rgba(26, 28, 41, 0.95);
+    border-bottom: 1px solid var(--violet);
+}
+
+/* On modifie toutes les Cards d'un coup */
+.card {
+    background-color: #1a1c29;
+    border: 1px solid var(--gris);
+    margin-bottom: 20px;
+}
+
+.card-header {
+    background-color: rgba(0,0,0,0.2);
+    border-bottom: 1px solid var(--gris);
+    color: var(--violet_clair);
+    font-weight: bold;
+}
+
+.card-footer {
+    border-top: 1px solid var(--gris);
+    color: #888;
+    font-size: 0.9em;
+}
+
+/* Style des titres */
+h2 {
+    border-left: 5px solid var(--violet_clair);
+    padding-left: 15px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+/* La seule classe perso pour le bloc de titre */
+.hero {
+    background: #1e1b2e;
+    border-left: 5px solid var(--violet);
+    padding: 30px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+/* Images et légendes */
+img {
+    border-radius: 5px;
+}
+
+figcaption {
+    text-align: center;
+    color: #888;
+    font-size: 0.9em;
+    font-style: italic;
+    margin-top: 5px;
+}
+
+/* Pour le journal */
+.timeline {
+    border-left: 2px solid var(--gris);
+    padding-left: 20px;
+    margin-bottom: 30px;
+}
+
+.navbar-toggler {
+    border-color: whitesmoke;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.7%29' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+
+/* --- ANIMATIONS & INTERACTIONS --- */
+/*
+Cette partie est juste pour rendre la lecture du rapport plus agréable.
+Elle a été faite en suivant des tutoriels instagrams
+@
+*/
+
+body {
+    animation: fadeIn 0.8s ease-out;
+}
+
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    border-color: var(--violet);
+}
+
+figure {
+    overflow: hidden; /* Empêche l'image de dépasser du cadre */
+    border-radius: 5px;
+}
+
+figure img {
+    transition: transform 0.5s ease;
+}
+
+figure:hover img {
+    transform: scale(1.05);
+}
+
+.nav-link {
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--violet);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%; /* Barre qui se dessine sous le lien */
+}
+
+
+.alert, .badge {
+    transition: transform 0.2s ease;
+}
+
+.alert:hover {
+    transform: scale(1.01);
+}

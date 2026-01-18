@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil | SAÉ S1.03</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">Binôme 05</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="system.html">Infrastructure</a></li>
+                    <li class="nav-item"><a class="nav-link" href="administration.html">Administration</a></li>
+                    <li class="nav-item"><a class="nav-link" href="reseau.html">Réseau</a></li>
+                    <li class="nav-item"><a class="nav-link" href="journal.html">Journal</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container my-5">
+        <div class="hero">
+            <h1 class="display-4 fw-bold">Rapport Technique</h1>
+            <p class="lead">Groupe 108. Installation optimisée sur Asus Zephyrus G14.</p>
+            <div>
+                <span class="badge bg-secondary">32 Go RAM</span>
+                <span class="badge bg-secondary">Ryzen 9</span>
+                <span class="badge bg-secondary">EndeavourOS</span>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-6">
+                <h2>I. Matériel et Stratégie</h2>
+                <p>L'objectif de cette SAÉ est de simuler la mise en production d'un serveur web dans un environnement
+                isolé.
+                Pour ce faire, nous avons exploité la puissance de l'<strong>Asus Zephyrus G14</strong>.
+                Contrairement à une installation standard limitée par le matériel, nous avons bénéficié d'une machine
+                dont les capacités (32 Go de RAM DDR5 et processeur Ryzen 9) permettent une virtualisation de haut
+                niveau sans aucun compromis sur la fluidité du système hôte.
+                </p>
+                <div class="card mt-3">
+                    <div class="card-header">Choix Technique : 8 Go de RAM</div>
+                    <div class="card-body">
+                        <p>Nous avons alloué précisément <strong>8192 Mo (8 Go)</strong> à la machine virtuelle.</p>
+                        <ul>
+                            <li><strong>Performance :</strong> Cela permet à l'environnement graphique Plasma et au serveur
+                                Apache de tourner simultanément sans jamais saturer la mémoire (pas de swap).
+                            </li>
+                            <li><strong>Équilibre :</strong> Cette allocation ne représente que 25% de la RAM de l'hôte,
+                                laissant 24 Go disponibles pour les outils de développement (PhpStorm, Navigateur) sur
+                                l'Asus G14.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <figure>
+                    <img src="assets/img/Allocations.png" class="img-fluid" alt="Config RAM">
+                    <figcaption>Config : 8 Go RAM / 4 CPUs</figcaption>
+                </figure>
+            </div>
+        </div>
+        <h2 class="mt-5">II. Résumé de l'Infrastructure</h2>
+        <div class="row row-cols-1 row-cols-md-4 g-3">
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-header">User</div>
+                    <div class="card-body text-center fw-bold">admin_gr108_binome05</div>
+                    <div class="card-footer text-center">
+                        <img src="assets/img/User_setup.png" class="img-fluid rounded" alt="Preuve User">
+                    </div>
+                    <a href="zoom_user.html" class="stretched-link"></a>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-header">Réseau</div>
+                    <div class="card-body text-center fw-bold">Bridged</div>
+                    <div class="card-footer text-center">
+                        <img src="assets/img/Network_switch.png" class="img-fluid rounded" alt="Preuve Network">
+                    </div>
+                    <a href="zoom_reseau.html" class="stretched-link"></a>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-header">Web</div>
+                    <div class="card-body text-center fw-bold">Apache OK</div>
+                    <div class="card-footer text-center">
+                        <img src="assets/img/Network_proof.png" class="img-fluid rounded" alt="Preuve Web">
+                    </div>
+                    <a href="zoom_web.html" class="stretched-link"></a>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-header">Disque</div>
+                    <div class="card-body text-center fw-bold">50 Go</div>
+                    <div class="card-footer text-center">
+                        <img src="assets/img/Sum_ressources.png" class="img-fluid rounded" alt="Preuve Disque">
+                    </div>
+                    <a href="zoom_disque.html" class="stretched-link"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
