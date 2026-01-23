@@ -6,10 +6,11 @@
 
 > **Installation et Configuration d'un Poste de Travail Linux (Virtualisé)**
 >
-> **Groupe 108 - Binôme 05**
-> Mattéo DE CARVALHO
-> Louis TCHOUANGOU
-> Mathieu FREY
+> 
+ **Groupe 108 - Binôme 05**
+ Mattéo DE CARVALHO
+ Louis TCHOUANGOU
+ Mathieu FREY
 
 Ce dépôt héberge le site web statique servant de rapport technique pour la SAÉ S1.03. Il documente l'intégralité du processus d'installation, de configuration et de mise en réseau d'un serveur Web sous Linux.
 
