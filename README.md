@@ -1,10 +1,5 @@
 # 📁 Rapport Technique - SAÉ S1.03
 
-Binome 05 - Groupe 108
-Mattéo DE CARVALHO
-Louis TCHOUANGOU
-Mathieu FREY
-
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3-purple?style=for-the-badge&logo=bootstrap)
 ![Arch Linux](https://img.shields.io/badge/EndeavourOS-Arch_Linux-blue?style=for-the-badge&logo=arch-linux)
 ![Apache](https://img.shields.io/badge/Server-Apache_HTTP-red?style=for-the-badge&logo=apache)
@@ -12,6 +7,9 @@ Mathieu FREY
 > **Installation et Configuration d'un Poste de Travail Linux (Virtualisé)**
 >
 > **Groupe 108 - Binôme 05**
+> Mattéo DE CARVALHO
+> Louis TCHOUANGOU
+> Mathieu FREY
 
 Ce dépôt héberge le site web statique servant de rapport technique pour la SAÉ S1.03. Il documente l'intégralité du processus d'installation, de configuration et de mise en réseau d'un serveur Web sous Linux.
 
